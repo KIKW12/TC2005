@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio 1 - Preguntas y Respuestas</title>
+</head>
+<body>
+    <header>
+        <h1>Laboratorio 1: Mi Página Personal</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#preguntas">Preguntas Lab 1</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sobre-mi">
+            <h2>Sobre Mí</h2>
+            <article>
+                <p>¡Hola! Soy <strong>Enrique</strong>, estudiante de ingeniería en tecnologías computacionales.</p>
+                <p>Me apasiona el desarrollo web y la tecnología. Puedes ver más de mi trabajo en mi <a href="https://www.enayala.me" target="_blank">portafolio personal</a>.</p>
+            </article>
+        </section>
+
+        <section id="proyectos">
+            <h2>Mis Proyectos</h2>
+            <article>
+                <h3>Marsquake Identification</h3>
+                <p>Created and developed a mathematical approach for energy optimization.</p>
+            </article>
+            <article>
+                <h3>Restaurant Management System</h3>
+                <p>A comprehensive restaurant management system with admin panel, order management, and secure authentication. <br>
+                Built using object-oriented principles for scalability and maintenance.</p>
+            </article>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form onsubmit="alert('Mensaje enviado (simulación)'); return false;">
+                <fieldset>
+                    <legend>Formulario de Contacto</legend>
+                    
+                    <p>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </p>
+                    
+                    <p>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </p>
+                    
+                    <p>
+                        <label for="asunto">Asunto:</label>
+                        <select id="asunto" name="asunto">
+                            <option value="colaboracion">Colaboración</option>
+                            <option value="proyecto">Proyecto</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </p>
+                    
+                    <p>
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                    </p>
+                    
+                    <p>
+                        <label>Preferencia de contacto:</label>
+                        <input type="radio" id="email-pref" name="preferencia" value="email">
+                        <label for="email-pref">Email</label>
+                        <input type="radio" id="telefono-pref" name="preferencia" value="telefono">
+                        <label for="telefono-pref">Teléfono</label>
+                    </p>
+                    
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpiar">
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="preguntas">
+        <section>
+            <h2>Preguntas</h2>           
+                <p><strong>¿Cuál es la diferencia entre Internet y la World Wide Web?</strong></p>
+                <p>Internet es una red de computadoras interconectadas alrededor del mundo, mientras que la WWW es una enorme coleccion de paginas que se encuentra en Internet.</p>
+            
+                <p><strong>¿Cuáles son las partes de un URL?</strong></p>
+                <p>Las partes de un URL son:</p>
+                <ul>
+                    <li>Protocolo (http://, https://)</li>
+                    <li>Subdiminio (www., contacto.)</li>
+                    <li>Nombre de dominio (google.com, tec.mx)</li>
+                    <li>Extension (.es, .com)</li>
+                    <li>Ruta (/contacto, /blog)</li>
+                    <li>Parametros (?q=.....)</li>
+                </ul>
+                <p><strong>¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</strong></p>
+                <ul>
+                    <li>GET: Se usa para obtener datos de un servidor</li>
+                    <li>HEAD: Se usa para obtener la cabecera de una respuesta HTTP</li>
+                    <li>POST: Se usa para crear un nuevo recurso</li>
+                    <li>PUT: Se usa para modificar un recurso existente con una version actualizada</li>
+                    <li>PATCH: Se usa para actualizar un recurso existente</li>
+                    <li>DELETE: Se utiliza para eliminar un recurso de la base de datos</li>
+                </ul>
+
+                <p><strong>¿Qué método HTTP se debe utilizar al enviar un formulario HTML?</strong></p>
+                <p>Se utiliza el método POST</p>
+
+                <p><strong>¿Qué método HTTP se utiliza al acceder a una página mediante URL?</strong></p>
+                <p>Se utiliza el método GET</p>
+
+                <p><strong>¿Qué significa un código 200?</strong></p>
+                <p>Que la solicitud se hizo de manera correcta</p>
+
+                <p><strong>¿Es responsabilidad del desarrollador corregir un error 404?</strong></p>
+                <p>Sí, ya que siginifica que un error de ruta se produjo, causado por errores de enlace, errores de redirección, etc.</p>
+
+                <p><strong>¿Es responsabilidad del desarrollador corregir un error 500?</strong></p>
+                <p>Sí, ya que es un error interno del servidor</p>
+
+                <p><strong>¿Qué significa que un atributo HTML5 esté depreciado?</strong></p>
+                <p>Que los navegadores aun la admiten pero ya no forma parte de la especificacion HTML oficial</p>
+
+                <p><strong>¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</strong></p>
+                <ul>
+                    <li>HTML5: admite audio, video, graficos, tiene controles de formulatios avanzados, mejor compatibilidad entre navegadores</li>
+                    <li>HTML4: depende de complementos de terceros para elementos graficos como Flash Player, tiene elementos basicos de formularios, no es tan compatible entre navegadores</li>
+                </ul>
+
+                <p><strong>¿Qué componentes tiene una tabla?</strong></p>
+                <ul>
+                    <li>< table >: Etiqueta contenedora de la tabla</li>
+                    <li>< tr >: Fila de la tabla</li>
+                    <li>< th >: Celda de encabezado</li>
+                    <li>< td >: Celda de datos</li>
+                </ul>
+
+                <p><strong>¿Cuáles son los principales controles de una forma HTML5?</strong></p>
+                <ul>
+                    <li>text, password, email, number, tel</li>
+                    <li>radio, checkbox</li>
+                    <li>select, textarea</li>
+                    <li>date, time, datetime-local</li>
+                    <li>file, color</li>
+                    <li>range, search</li>
+                    <li>submit, reset, button</li>
+                </ul>
+
+            <p><strong>¿Cuál es el ciclo de vida de los sistemas de información?</strong></p>
+            <p>Enfoque por fases de análisis y diseño que anilizan que los sistemas son desarrollados por un ciclo de actividades del analista y del usuario</p>
+
+            <p><strong>¿Cuál es el ciclo de desarrollo de sistemas de información?</strong></p>
+            <p>Mapa que se usa como guía a través de cada etapa del desarrollo, permitiendo la planificación , el seguimiento y la evaluación de los sistemas</p>
+        </section>
+    </main>
+
+    <footer>
+        <section>
+            <h2>Información de Contacto</h2>
+            <p>Nombre: Juan Enrique Ayala Zapata</p>
+            <p>Matrícula: A01711235</p>
+            <p>Correo: a01711235@tec.mx </p>
+        </section>
+    </footer>
+</body>
+</html>
