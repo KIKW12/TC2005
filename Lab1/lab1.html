@@ -4,187 +4,229 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio 1 - Preguntas y Respuestas</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="font-sans leading-relaxed text-gray-700 max-w-7xl mx-auto p-5 bg-gray-100">
     <header>
-        <h1>Laboratorio 1: Mi Página Personal</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#preguntas">Preguntas Lab 1</a></li>
-                <li><a href="#preguntas3">Preguntas Lab 3</a></li>
+        <h1 class="text-4xl text-center text-gray-800 mb-8">Laboratorio 1: Mi Página Personal</h1>
+        <nav class="bg-gray-800 p-4 rounded-lg mb-8">
+            <ul class="flex justify-center space-x-6 md:flex-row flex-col md:space-y-0 space-y-2">
+                <li><a href="#sobre-mi" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Sobre Mí</a></li>
+                <li><a href="#proyectos" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Proyectos</a></li>
+                <li><a href="#contacto" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Contacto</a></li>
+                <li><a href="#preguntas" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 1</a></li>
+                <li><a href="#preguntas3" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 3</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="sobre-mi">
-            <h2>Sobre Mí</h2>
+        <section id="sobre-mi" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Sobre Mí</h2>
             <article>
-                <p>¡Hola! Soy <strong>Enrique</strong>, estudiante de ingeniería en tecnologías computacionales.</p>
-                <p>Me apasiona el desarrollo web y la tecnología. Puedes ver más de mi trabajo en mi <a href="https://www.enayala.me" target="_blank">portafolio personal</a>.</p>
+                <p class="mb-4">¡Hola! Soy <strong>Enrique</strong>, estudiante de ingeniería en tecnologías computacionales.</p>
+                <p>Me apasiona el desarrollo web y la tecnología. Puedes ver más de mi trabajo en mi <a href="https://www.enayala.me" target="_blank" class="text-blue-500 hover:text-blue-700">portafolio personal</a>.</p>
             </article>
         </section>
 
-        <section id="proyectos">
-            <h2>Mis Proyectos</h2>
-            <article>
-                <h3>Marsquake Identification</h3>
+        <section id="proyectos" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Mis Proyectos</h2>
+            <article class="mb-6">
+                <h3 class="text-xl text-gray-800 mb-2">Marsquake Identification</h3>
                 <p>Created and developed a mathematical approach for energy optimization.</p>
             </article>
             <article>
-                <h3>Restaurant Management System</h3>
-                <p>A comprehensive restaurant management system with admin panel, order management, and secure authentication. <br>
+                <h3 class="text-xl text-gray-800 mb-2">Restaurant Management System</h3>
+                <p>A comprehensive restaurant management system with admin panel, order management, and secure authentication.<br>
                 Built using object-oriented principles for scalability and maintenance.</p>
             </article>
         </section>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <form onsubmit="alert('Mensaje enviado (simulación)'); return false;">
-                <fieldset>
-                    <legend>Formulario de Contacto</legend>
+        <section id="contacto" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Contacto</h2>
+            <form onsubmit="alert('Mensaje enviado (simulación)'); return false;" class="max-w-2xl mx-auto">
+                <fieldset class="border-2 border-blue-500 p-6 rounded-lg">
+                    <legend class="text-gray-800 font-bold px-2">Formulario de Contacto</legend>
                     
-                    <p>
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </p>
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-gray-800 mb-2">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required class="w-full p-2 border border-gray-300 rounded">
+                    </div>
                     
-                    <p>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </p>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-800 mb-2">Email:</label>
+                        <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded">
+                    </div>
                     
-                    <p>
-                        <label for="asunto">Asunto:</label>
-                        <select id="asunto" name="asunto">
+                    <div class="mb-4">
+                        <label for="asunto" class="block text-gray-800 mb-2">Asunto:</label>
+                        <select id="asunto" name="asunto" class="w-full p-2 border border-gray-300 rounded">
                             <option value="colaboracion">Colaboración</option>
                             <option value="proyecto">Proyecto</option>
                             <option value="otro">Otro</option>
                         </select>
-                    </p>
+                    </div>
                     
-                    <p>
-                        <label for="mensaje">Mensaje:</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-                    </p>
+                    <div class="mb-4">
+                        <label for="mensaje" class="block text-gray-800 mb-2">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+                    </div>
                     
-                    <p>
-                        <label>Preferencia de contacto:</label>
-                        <input type="radio" id="email-pref" name="preferencia" value="email">
-                        <label for="email-pref">Email</label>
-                        <input type="radio" id="telefono-pref" name="preferencia" value="telefono">
-                        <label for="telefono-pref">Teléfono</label>
-                    </p>
+                    <div class="mb-4">
+                        <label class="block text-gray-800 mb-2">Preferencia de contacto:</label>
+                        <div class="space-x-4">
+                            <input type="radio" id="email-pref" name="preferencia" value="email" class="mr-2">
+                            <label for="email-pref">Email</label>
+                            <input type="radio" id="telefono-pref" name="preferencia" value="telefono" class="mr-2">
+                            <label for="telefono-pref">Teléfono</label>
+                        </div>
+                    </div>
                     
-                    <p>
-                        <input type="submit" value="Enviar">
-                        <input type="reset" value="Limpiar">
-                    </p>
+                    <div class="flex space-x-4">
+                        <input type="submit" value="Enviar" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-700 cursor-pointer">
+                        <input type="reset" value="Limpiar" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-700 cursor-pointer">
+                    </div>
                 </fieldset>
             </form>
         </section>
-        <section id="preguntas">
-        <section>
-            <h2>Preguntas</h2>           
-                <p><strong>¿Cuál es la diferencia entre Internet y la World Wide Web?</strong></p>
-                <p>Internet es una red de computadoras interconectadas alrededor del mundo, mientras que la WWW es una enorme coleccion de paginas que se encuentra en Internet.</p>
-            
-                <p><strong>¿Cuáles son las partes de un URL?</strong></p>
-                <p>Las partes de un URL son:</p>
-                <ul>
-                    <li>Protocolo (http://, https://)</li>
-                    <li>Subdiminio (www., contacto.)</li>
-                    <li>Nombre de dominio (google.com, tec.mx)</li>
-                    <li>Extension (.es, .com)</li>
-                    <li>Ruta (/contacto, /blog)</li>
-                    <li>Parametros (?q=.....)</li>
-                </ul>
-                <p><strong>¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</strong></p>
-                <ul>
-                    <li>GET: Se usa para obtener datos de un servidor</li>
-                    <li>HEAD: Se usa para obtener la cabecera de una respuesta HTTP</li>
-                    <li>POST: Se usa para crear un nuevo recurso</li>
-                    <li>PUT: Se usa para modificar un recurso existente con una version actualizada</li>
-                    <li>PATCH: Se usa para actualizar un recurso existente</li>
-                    <li>DELETE: Se utiliza para eliminar un recurso de la base de datos</li>
-                </ul>
 
-                <p><strong>¿Qué método HTTP se debe utilizar al enviar un formulario HTML?</strong></p>
-                <p>Se utiliza el método POST</p>
+        <section id="preguntas" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Preguntas Laboratorio 1</h2>
+            <div class="space-y-6">
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuál es la diferencia entre Internet y la World Wide Web?</p>
+                    <p>Internet es una red de computadoras interconectadas alrededor del mundo, mientras que la WWW es una enorme coleccion de paginas que se encuentra en Internet.</p>
+                </div>
 
-                <p><strong>¿Qué método HTTP se utiliza al acceder a una página mediante URL?</strong></p>
-                <p>Se utiliza el método GET</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuáles son las partes de un URL?</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Protocolo (http://, https://)</li>
+                        <li>Subdiminio (www., contacto.)</li>
+                        <li>Nombre de dominio (google.com, tec.mx)</li>
+                        <li>Extension (.es, .com)</li>
+                        <li>Ruta (/contacto, /blog)</li>
+                        <li>Parametros (?q=.....)</li>
+                    </ul>
+                </div>
 
-                <p><strong>¿Qué significa un código 200?</strong></p>
-                <p>Que la solicitud se hizo de manera correcta</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>GET: Se usa para obtener datos de un servidor</li>
+                        <li>HEAD: Se usa para obtener la cabecera de una respuesta HTTP</li>
+                        <li>POST: Se usa para crear un nuevo recurso</li>
+                        <li>PUT: Se usa para modificar un recurso existente con una version actualizada</li>
+                        <li>PATCH: Se usa para actualizar un recurso existente</li>
+                        <li>DELETE: Se utiliza para eliminar un recurso de la base de datos</li>
+                    </ul>
+                </div>
 
-                <p><strong>¿Es responsabilidad del desarrollador corregir un error 404?</strong></p>
-                <p>Sí, ya que siginifica que un error de ruta se produjo, causado por errores de enlace, errores de redirección, etc.</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué método HTTP se debe utilizar al enviar un formulario HTML?</p>
+                    <p>Se utiliza el método POST</p>
+                </div>
 
-                <p><strong>¿Es responsabilidad del desarrollador corregir un error 500?</strong></p>
-                <p>Sí, ya que es un error interno del servidor</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué método HTTP se utiliza al acceder a una página mediante URL?</p>
+                    <p>Se utiliza el método GET</p>
+                </div>
 
-                <p><strong>¿Qué significa que un atributo HTML5 esté depreciado?</strong></p>
-                <p>Que los navegadores aun la admiten pero ya no forma parte de la especificacion HTML oficial</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué significa un código 200?</p>
+                    <p>Que la solicitud se hizo de manera correcta</p>
+                </div>
 
-                <p><strong>¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</strong></p>
-                <ul>
-                    <li>HTML5: admite audio, video, graficos, tiene controles de formulatios avanzados, mejor compatibilidad entre navegadores</li>
-                    <li>HTML4: depende de complementos de terceros para elementos graficos como Flash Player, tiene elementos basicos de formularios, no es tan compatible entre navegadores</li>
-                </ul>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Es responsabilidad del desarrollador corregir un error 404?</p>
+                    <p>Sí, ya que siginifica que un error de ruta se produjo, causado por errores de enlace, errores de redirección, etc.</p>
+                </div>
 
-                <p><strong>¿Qué componentes tiene una tabla?</strong></p>
-                <ul>
-                    <li>< table >: Etiqueta contenedora de la tabla</li>
-                    <li>< tr >: Fila de la tabla</li>
-                    <li>< th >: Celda de encabezado</li>
-                    <li>< td >: Celda de datos</li>
-                </ul>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Es responsabilidad del desarrollador corregir un error 500?</p>
+                    <p>Sí, ya que es un error interno del servidor</p>
+                </div>
 
-                <p><strong>¿Cuáles son los principales controles de una forma HTML5?</strong></p>
-                <ul>
-                    <li>text, password, email, number, tel</li>
-                    <li>radio, checkbox</li>
-                    <li>select, textarea</li>
-                    <li>date, time, datetime-local</li>
-                    <li>file, color</li>
-                    <li>range, search</li>
-                    <li>submit, reset, button</li>
-                </ul>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué significa que un atributo HTML5 esté depreciado?</p>
+                    <p>Que los navegadores aun la admiten pero ya no forma parte de la especificacion HTML oficial</p>
+                </div>
 
-            <p><strong>¿Cuál es el ciclo de vida de los sistemas de información?</strong></p>
-            <p>Enfoque por fases de análisis y diseño que anilizan que los sistemas son desarrollados por un ciclo de actividades del analista y del usuario</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>HTML5: admite audio, video, graficos, tiene controles de formulatios avanzados, mejor compatibilidad entre navegadores</li>
+                        <li>HTML4: depende de complementos de terceros para elementos graficos como Flash Player, tiene elementos basicos de formularios, no es tan compatible entre navegadores</li>
+                    </ul>
+                </div>
 
-            <p><strong>¿Cuál es el ciclo de desarrollo de sistemas de información?</strong></p>
-            <p>Mapa que se usa como guía a través de cada etapa del desarrollo, permitiendo la planificación , el seguimiento y la evaluación de los sistemas</p>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué componentes tiene una tabla?</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>< table >: Etiqueta contenedora de la tabla</li>
+                        <li>< tr >: Fila de la tabla</li>
+                        <li>< th >: Celda de encabezado</li>
+                        <li>< td >: Celda de datos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuáles son los principales controles de una forma HTML5?</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>text, password, email, number, tel</li>
+                        <li>radio, checkbox</li>
+                        <li>select, textarea</li>
+                        <li>date, time, datetime-local</li>
+                        <li>file, color</li>
+                        <li>range, search</li>
+                        <li>submit, reset, button</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuál es el ciclo de vida de los sistemas de información?</p>
+                    <p>Enfoque por fases de análisis y diseño que anilizan que los sistemas son desarrollados por un ciclo de actividades del analista y del usuario</p>
+                </div>
+
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cuál es el ciclo de desarrollo de sistemas de información?</p>
+                    <p>Mapa que se usa como guía a través de cada etapa del desarrollo, permitiendo la planificación, el seguimiento y la evaluación de los sistemas</p>
+                </div>
+            </div>
         </section>
-        <section id="preguntas2">
-        <section>
-            <h2>Preguntas Laboratorio 2</h2>           
-                <p><strong>Como ingeniero de software ¿cuál es tu recomendación sobre el uso de !important en un CSS? </strong></p>
-                <p>Mi recomendación sería utilizarlo unicamente como único recurso, si bien ayuda a desactivar las reglas de cascada, puede generar problemas de mantenimiento y escalabilidad</p>
-        
-                <p><strong>Si se pone una imagen de fondo en una página HTML, ¿por qué debe escogerse con cuidado? </strong></p>
-                <p>Porque puede afectar la legibilidad del texto y la accesibilidad del sitio</p>
 
-                <p><strong>Como ingeniero de software, ¿cuál es tu recomendación al elegir las unidades de un propiedad de estilo entre %, px y pt? </strong></p>
-                <p>Utilizar % para tamaños relativos, px para tamaños fijos y pt para tamaños de texto</p>
+        <section id="preguntas2" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Preguntas Laboratorio 2</h2>
+            <div class="space-y-6">
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">Como ingeniero de software ¿cuál es tu recomendación sobre el uso de !important en un CSS?</p>
+                    <p>Mi recomendación sería utilizarlo unicamente como único recurso, si bien ayuda a desactivar las reglas de cascada, puede generar problemas de mantenimiento y escalabilidad</p>
+                </div>
 
-                <p><strong>¿Por qué el uso de una versión minimizada del CSS mejora el rendimiento del sitio? </strong></p>
-                <p>Porque reduce el tamaño del archivo y por lo tanto el tiempo de carga de la página</p>
-            </section>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">Si se pone una imagen de fondo en una página HTML, ¿por qué debe escogerse con cuidado?</p>
+                    <p>Porque puede afectar la legibilidad del texto y la accesibilidad del sitio</p>
+                </div>
+
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">Como ingeniero de software, ¿cuál es tu recomendación al elegir las unidades de un propiedad de estilo entre %, px y pt?</p>
+                    <p>Utilizar % para tamaños relativos, px para tamaños fijos y pt para tamaños de texto</p>
+                </div>
+
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Por qué el uso de una versión minimizada del CSS mejora el rendimiento del sitio?</p>
+                    <p>Porque reduce el tamaño del archivo y por lo tanto el tiempo de carga de la página</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
+    <footer class="mt-12 bg-gray-800 text-white p-6 rounded-lg">
         <section>
-            <h2>Información de Contacto</h2>
+            <h2 class="text-2xl border-b border-blue-500 pb-2 mb-4">Información de Contacto</h2>
             <p>Nombre: Juan Enrique Ayala Zapata</p>
             <p>Matrícula: A01711235</p>
-            <p>Correo: a01711235@tec.mx </p>
+            <p>Correo: a01711235@tec.mx</p>
         </section>
     </footer>
 </body>
