@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorio 1 - Preguntas y Respuestas</title>
+    <title>Laboratorios</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans leading-relaxed text-gray-700 max-w-7xl mx-auto p-5 bg-gray-100">
@@ -14,8 +14,10 @@
                 <li><a href="#sobre-mi" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Sobre Mí</a></li>
                 <li><a href="#proyectos" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Proyectos</a></li>
                 <li><a href="#contacto" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Contacto</a></li>
+                <li><a href="#javascript" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Laboratorio 4</a></li>
                 <li><a href="#preguntas" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 1</a></li>
                 <li><a href="#preguntas3" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 3</a></li>
+                <li><a href="#preguntas4" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 4</a></li>
                 <li><a href="#preguntas5" class="text-white hover:bg-blue-500 px-3 py-2 rounded transition-colors">Preguntas Lab 5</a></li>
             </ul>
         </nav>
@@ -89,6 +91,78 @@
                     </div>
                 </fieldset>
             </form>
+        </section>
+
+        <section id="javascript" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Laboratorio 4</h2>
+            
+            <!-- Ejercicio 1 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 1: Tabla de cuadrados y cubos</h3>
+                <button onclick="generarTabla()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                    Generar tabla
+                </button>
+                <div id="resultadoTabla" class="resultado mt-4"></div>
+            </div>
+        
+            <!-- Ejercicio 2 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 2: Suma y tiempo de respuesta</h3>
+                <button onclick="iniciarSuma()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                    Iniciar prueba
+                </button>
+                <div id="resultadoSuma" class="resultado mt-4"></div>
+            </div>
+        
+            <!-- Ejercicio 3 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 3: Contador de números</h3>
+                <button onclick="probarContador()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                    Probar contador
+                </button>
+                <div id="resultadoContador" class="resultado mt-4"></div>
+            </div>
+        
+            <!-- Ejercicio 4 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 4: Promedios de matriz</h3>
+                <button onclick="probarPromedios()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                    Calcular promedios
+                </button>
+                <div id="resultadoPromedios" class="resultado mt-4"></div>
+            </div>
+        
+            <!-- Ejercicio 5 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 5: Número inverso</h3>
+                <div class="flex gap-4 items-center">
+                    <input type="number" id="numeroInverso" placeholder="Ingrese un número" 
+                           class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+                    <button onclick="calcularInverso()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                        Calcular inverso
+                    </button>
+                </div>
+                <div id="resultadoInverso" class="resultado mt-4"></div>
+            </div>
+        
+            <!-- Ejercicio 6 -->
+            <div class="ejercicio mb-8">
+                <h3 class="text-xl text-gray-800 mb-4">Ejercicio 6: Conversor de temperatura</h3>
+                <p class="mb-4">Este ejercicio implementa un conversor de temperatura que permite convertir entre diferentes unidades.</p>
+                <div class="flex gap-4 items-center">
+                    <input type="number" id="temperatura" placeholder="Ingrese temperatura" 
+                           class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+                    <select id="unidadOrigen" class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-300 focus:outline-none">
+                        <option value="C">Celsius</option>
+                        <option value="F">Fahrenheit</option>
+                        <option value="K">Kelvin</option>
+                    </select>
+                    <button onclick="convertirTemperatura()" class="bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 focus:outline-none text-white px-4 py-2 rounded transition-colors">
+                        Convertir
+                    </button>
+                </div>
+                <div id="resultadoTemperatura" class="resultado mt-4"></div>
+            </div>
         </section>
 
         <section id="preguntas" class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -221,6 +295,43 @@
             </div>
         </section>
 
+        <section id="preguntas4" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-3xl text-blue-500 mb-4">Preguntas Laboratorio 4</h2>
+            <div class="space-y-6">
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué diferencias y semejanzas hay entre Java y JavaScript?</p>
+                    <p>
+                        Java genera código que se ejecuta en una máquina virtual, mientras que JavaScript se ejecuta en el navegador.
+                        <br>"Java is to JavaScript as Car is to Carpet", Chris Heilmann.
+                    </p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué métodos tiene el objeto Date? (Menciona al menos 5*)</p>
+                    <p>
+                        toDateString(), toTimeString(), toLocaleDateString(), toLocaleTimeString(), toUTCString()
+                    </p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué métodos tienen los arreglos? (Menciona al menos 5*)</p>
+                    <p>
+                        push(), pop(), shift(), unshift(), slice()
+                    </p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Cómo se declara una variable con alcance local dentro de una función?</p>
+                    <p>
+                        Se declara con la palabra reservada let y const
+                    </p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800 mb-2">¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</p>
+                    <p>
+                        Puede generar problemas de mantenimiento y escalabilidad
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="preguntas5" class="bg-white p-6 rounded-lg shadow-md mb-6">
             <h2 class="text-3xl text-blue-500 mb-4">Preguntas Laboratorio 5</h2>
             <div class="space-y-6">
@@ -234,7 +345,6 @@
             </div>
         </section>
     </main>
-
     <footer class="mt-12 bg-gray-800 text-white p-6 rounded-lg">
         <section>
             <h2 class="text-2xl border-b border-blue-500 pb-2 mb-4">Información de Contacto</h2>
@@ -243,5 +353,6 @@
             <p>Correo: a01711235@tec.mx</p>
         </section>
     </footer>
+    <script src="scripts/lab4.js"></script>
 </body>
 </html>
