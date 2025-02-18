@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio 6</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1 id="mainTitle">TechStore - Tu Tienda de Tecnología</h1>
+        <p id="subtitle">Los mejores productos tech al mejor precio</p>
+    </div>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="" alt="Smartphone" class="product-image">
+            <h2>iPhone 20 Pro Max</h2>
+            <p class="original-price">$1,200.00</p>
+            <p class="price">$999.99</p>
+            <p class="promo-text">¡17% de descuento!</p>
+            <div class="quantity-controls">
+                <button class="btn btn-primary" onclick="decrementQuantity(1)">-</button>
+                <input type="number" id="quantity1" class="quantity-input" min="0" max="5" value="0" readonly>
+                <button class="btn btn-primary" onclick="incrementQuantity(1)">+</button>
+            </div>
+            <button class="btn btn-success" onclick="toggleDetails(1)">Ver Detalles</button>
+            <div id="details1" class="product-details">
+                <p>• Pantalla AMOLED 6.7"</p>
+                <p>• Procesador A18 Bionec Apple Silicon</p>
+                <p>• 8GB RAM, 256GB Almacenamiento</p>
+                <p>• Cámara 108MP con IA</p>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="" alt="Laptop" class="product-image">
+            <h2>Laptop Ultra Pro Max HP</h2>
+            <p class="original-price">$2,500.00</p>
+            <p class="price">$1,999.99</p>
+            <p class="promo-text">¡20% de descuento!</p>
+            <div class="quantity-controls">
+                <button class="btn btn-primary" onclick="decrementQuantity(2)">-</button>
+                <input type="number" id="quantity2" class="quantity-input" min="0" max="3" value="0" readonly>
+                <button class="btn btn-primary" onclick="incrementQuantity(2)">+</button>
+            </div>
+            <button class="btn btn-success" onclick="toggleDetails(2)">Ver Detalles</button>
+            <div id="details2" class="product-details">
+                <p>• Intel i9 12th Gen</p>
+                <p>• 2600GB RAM DDR5</p>
+                <p>• 50000GB NVMe SSD</p>
+                <p>• RTX 8090 64GB</p>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="" alt="Smartwatch" class="product-image">
+            <h2>Apple Watch Ultra Serie 2000</h2>
+            <p class="original-price">$450.00</p>
+            <p class="price">$349.99</p>
+            <p class="promo-text">¡22% de descuento!</p>
+            <div class="quantity-controls">
+                <button class="btn btn-primary" onclick="decrementQuantity(3)">-</button>
+                <input type="number" id="quantity3" class="quantity-input" min="0" max="4" value="0" readonly>
+                <button class="btn btn-primary" onclick="incrementQuantity(3)">+</button>
+            </div>
+            <button class="btn btn-success" onclick="toggleDetails(3)">Ver Detalles</button>
+            <div id="details3" class="product-details">
+                <p>• Monitor cardíaco avanzado</p>
+                <p>• GPS integrado</p>
+                <p>• Batería de 7 días</p>
+                <p>• Resistente al agua 5ATM</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <h2>Resumen de Compra</h2>
+        <p>Subtotal: $<span id="subtotal">0.00</span></p>
+        <p>IVA (16%): $<span id="iva">0.00</span></p>
+        <p>Total: $<span id="total">0.00</span></p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
