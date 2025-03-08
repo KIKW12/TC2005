@@ -1,0 +1,8 @@
+1. ¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?
+Separacion de responsabilidad, facilidad de mantenimiento y escalabilidad, 
+reutilización de código, y mayor seguridad.
+
+2. ¿Qué es SQL injection y cómo se puede prevenir?
+Es un tipo de ataque que inserta codigo SQL malicioso en una consulta para poder
+manipular la base de datos de una aplicacion. Para poderla prevenir se debe de
+utilizar consultas preparadas o consultas parametrizadas.
