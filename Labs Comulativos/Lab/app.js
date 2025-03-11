@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,6 +15,10 @@ app.set('views', path.join(__dirname, 'views'));
 // Cookie parser middleware
 app.use(cookieParser());
 
+// Body parser middleware - moving this BEFORE CSRF protection
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Session middleware
 app.use(session({
     secret: 'your-secret-key',
@@ -24,16 +29,17 @@ app.use(session({
     }
 }));
 
-// Make session data available to all views
+// CSRF protection (after session middleware AND body parser)
+const csrfProtection = csrf();
+app.use(csrfProtection);
+
+// Make session data and CSRF token available to all views
 app.use((req, res, next) => {
     res.locals.isLoggedIn = req.session.isLoggedIn;
     res.locals.username = req.session.username;
+    res.locals.csrfToken = req.csrfToken();
     next();
 });
-
-// Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // Middleware for logging
 app.use((request, response, next) => {

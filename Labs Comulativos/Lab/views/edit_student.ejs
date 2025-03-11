@@ -13,7 +13,8 @@
 </head>
 <body>
     <h1>Edit Student</h1>
-    <form action="/edit/<%= student.id %>" method="POST">
+    <form action="/students/edit/<%= student.id %>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div>
             <label for="name">Nombre estudiante:</label>
             <input type="text" id="name" name="name" value="<%= student.name %>" required>
@@ -28,6 +29,6 @@
         </div>
         <button type="submit">Editar estudiante</button>
     </form>
-    <a href="/list">lista</a>
+    <a href="/students">Volver a la lista</a>
 </body>
 </html>

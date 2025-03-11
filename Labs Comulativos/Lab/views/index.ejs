@@ -65,6 +65,7 @@
             </div>
         <% } else { %>
             <a href="/login">Login</a>
+            <a href="/signup" style="margin-left: 10px;">Registro</a>
         <% } %>
     </div>
 
@@ -88,7 +89,7 @@
                 </div>
             </div>
         <% } else { %>
-            <p>Incia sesión para entrar al sistema</p>
+            <p>Inicia sesión para entrar al sistema</p>
         <% } %>
     </div>
 
@@ -99,6 +100,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'CSRF-Token': '<%= csrfToken %>'
                 },
                 body: JSON.stringify({ theme: newTheme }),
             }).then(() => {

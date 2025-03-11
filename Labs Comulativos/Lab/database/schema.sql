@@ -1,4 +1,6 @@
 -- Create database
+CREATE DATABASE IF NOT EXISTS LabsComulativos;
+
 USE LabsComulativos;
 
 -- Create courses table
@@ -15,6 +17,15 @@ CREATE TABLE students (
     name VARCHAR(255) NOT NULL,
     grade INT NOT NULL,
     studentId VARCHAR(50) NOT NULL
+);
+
+-- Create users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Sample data (optional)

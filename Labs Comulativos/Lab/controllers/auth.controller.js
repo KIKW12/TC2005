@@ -1,30 +1,79 @@
-const demoUser = {
-    username: 'Kike',
-    password: 'Kike123'
-};
+const User = require('../models/user.model');
+const bcrypt = require('bcryptjs');
 
 exports.getLogin = (req, res) => {
     res.render('login', { error: null });
 };
 
 exports.postLogin = (req, res) => {
-    const { username, password, remember } = req.body;
+    const { email, password, remember } = req.body;
+    let loadedUser;
+    
+    User.findByEmail(email)
+        .then(user => {
+            if (!user) {
+                return res.render('login', { error: 'Usuario o contraseña inválidos' });
+            }
+            loadedUser = user;
+            
+            return bcrypt.compare(password, user.password);
+        })
+        .then(doMatch => {
+            if (doMatch) {
+                req.session.isLoggedIn = true;
+                req.session.user = loadedUser;
+                req.session.username = loadedUser.name;
+                
+                if (remember) {
+                    res.cookie('rememberMe', loadedUser.email, {
+                        maxAge: 30 * 24 * 60 * 60 * 1000,
+                        httpOnly: true
+                    });
+                }
+                
+                return req.session.save(err => {
+                    if (err) console.log(err);
+                    res.redirect('/');
+                });
+            }
+            res.render('login', { error: 'Usuario o contraseña inválidos' });
+        })
+        .catch(err => {
+            console.error('Error en login:', err);
+            res.render('login', { error: 'Error al iniciar sesión. Inténtelo nuevamente.' });
+        });
+};
 
-    if (username === demoUser.username && password === demoUser.password) {
-        req.session.isLoggedIn = true;
-        req.session.username = username;
+exports.getSignup = (req, res) => {
+    res.render('signup', { error: null });
+};
 
-        if (remember) {
-            res.cookie('rememberMe', username, {
-                maxAge: 30 * 24 * 60 * 60 * 1000,
-                httpOnly: true
-            });
-        }
-
-        res.redirect('/');
-    } else {
-        res.render('login', { error: 'Invalid username or password' });
+exports.postSignup = (req, res) => {
+    const { name, email, password, confirmPassword } = req.body;
+    
+    // Basic validation
+    if (password !== confirmPassword) {
+        return res.render('signup', { error: 'Las contraseñas no coinciden' });
     }
+    
+    // Check if user exists
+    User.findByEmail(email)
+        .then(existingUser => {
+            if (existingUser) {
+                return res.render('signup', { error: 'El correo ya está registrado' });
+            }
+            
+            // Create new user
+            const user = new User(null, name, email, password);
+            return user.save();
+        })
+        .then(result => {
+            res.redirect('/login');
+        })
+        .catch(err => {
+            console.error('Error al registrar usuario:', err);
+            res.render('signup', { error: 'Error al crear cuenta. Inténtelo nuevamente.' });
+        });
 };
 
 exports.logout = (req, res) => {
@@ -40,10 +89,22 @@ exports.logout = (req, res) => {
 exports.isAuth = (req, res, next) => {
     if (req.session.isLoggedIn) {
         next();
-    } else if (req.cookies.rememberMe === demoUser.username) {
-        req.session.isLoggedIn = true;
-        req.session.username = demoUser.username;
-        next();
+    } else if (req.cookies.rememberMe) {
+        User.findByEmail(req.cookies.rememberMe)
+            .then(user => {
+                if (user) {
+                    req.session.isLoggedIn = true;
+                    req.session.user = user;
+                    req.session.username = user.name;
+                    next();
+                } else {
+                    res.redirect('/login');
+                }
+            })
+            .catch(err => {
+                console.error('Auth error:', err);
+                res.redirect('/login');
+            });
     } else {
         res.redirect('/login');
     }
