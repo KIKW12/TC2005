@@ -16,7 +16,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -37,6 +37,17 @@
             text-align: center;
             margin-top: 15px;
         }
+        .admin-panel {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .admin-panel h3 {
+            margin-top: 0;
+            color: #212529;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +56,14 @@
         <% if (error) { %>
             <div class="error"><%= error %></div>
         <% } %>
+
+        <% if (isAdmin) { %>
+            <div class="admin-panel">
+                <h3>Admin Panel</h3>
+                <p>You are creating a new user as an administrator.</p>
+            </div>
+        <% } %>
+
         <form action="/signup" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
@@ -63,11 +82,29 @@
                 <label for="confirmPassword">Confirmar Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
             </div>
+
+            <% if (isAdmin && roles && roles.length > 0) { %>
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <% roles.forEach(role => { %>
+                            <option value="<%= role.name %>"><%= role.name %> - <%= role.description %></option>
+                        <% }); %>
+                    </select>
+                </div>
+            <% } %>
+
             <button type="submit">Registrarse</button>
         </form>
         <div class="login-link">
             ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
         </div>
+
+        <% if (isAdmin) { %>
+            <div class="login-link">
+                <a href="/admin/users">Back to User Management</a>
+            </div>
+        <% } %>
     </div>
 </body>
 </html>

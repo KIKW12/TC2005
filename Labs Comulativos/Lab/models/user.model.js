@@ -1,5 +1,6 @@
 const db = require('../util/database');
 const bcrypt = require('bcryptjs');
+const Role = require('./role.model');
 
 class User {
     constructor(id, name, email, password) {
@@ -18,6 +19,22 @@ class User {
                     'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
                     [this.name, this.email, hashedPassword]
                 );
+            });
+    }
+
+    // Save a new user and assign a default role
+    saveWithRole(roleName = 'student') {
+        return this.save()
+            .then(([result]) => {
+                const userId = result.insertId;
+                return Role.findByName(roleName)
+                    .then(role => {
+                        if (role) {
+                            return Role.assignToUser(userId, role.id)
+                                .then(() => userId);
+                        }
+                        return userId;
+                    });
             });
     }
 
@@ -40,6 +57,46 @@ class User {
                     return null;
                 }
                 return rows[0];
+            });
+    }
+
+    // Get all users
+    static fetchAll() {
+        return db.execute('SELECT id, name, email, created_at FROM users')
+            .then(([rows]) => {
+                return rows;
+            });
+    }
+
+    // Check if a user has a specific role
+    static hasRole(userId, roleName) {
+        return db.execute(
+            'SELECT COUNT(*) AS count FROM user_roles ur ' +
+            'JOIN roles r ON ur.role_id = r.id ' +
+            'WHERE ur.user_id = ? AND r.name = ?',
+            [userId, roleName]
+        ).then(([rows]) => {
+            return rows[0].count > 0;
+        });
+    }
+
+    // Get user with roles
+    static getUserWithRoles(userId) {
+        let userData;
+        return this.findById(userId)
+            .then(user => {
+                if (!user) {
+                    return null;
+                }
+                userData = user;
+                return Role.getUserRoles(userId);
+            })
+            .then(roles => {
+                if (!userData) {
+                    return null;
+                }
+                userData.roles = roles;
+                return userData;
             });
     }
 }

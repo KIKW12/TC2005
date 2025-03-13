@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Sistema de control escolar</title>
+    <style>
+        .container { 
+            max-width: 1000px; 
+            margin: 50px auto; 
+        }
+        .nav-links {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .stat-box {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .stat-box h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .admin-actions {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        body.dark {
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark .card {
+            background-color: #444;
+            border-color: #555;
+        }
+        body.dark .card-header {
+            background-color: #555;
+            border-color: #666;
+        }
+        body.dark .stat-box {
+            background-color: #555;
+        }
+        body.dark .stat-box h3 {
+            color: #f8f9fa;
+        }
+        body.dark .stat-box .number {
+            color: #6ea8fe;
+        }
+        body.dark .nav-links a {
+            background: #2c6e2e;
+        }
+        body.dark .admin-actions {
+            border-color: #555;
+        }
+    </style>
+</head>
+<body class="<%= theme || 'light' %>">
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        
+        <h1>Admin Dashboard</h1>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2>System Overview</h2>
+            </div>
+            <div class="card-body">
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>Total Users</h3>
+                        <div class="number"><%= userCount || 0 %></div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Teachers</h3>
+                        <div class="number"><%= teacherCount || 0 %></div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Students</h3>
+                        <div class="number"><%= studentCount || 0 %></div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Admins</h3>
+                        <div class="number"><%= adminCount || 0 %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2>User Management</h2>
+            </div>
+            <div class="card-body">
+                <div class="nav-links">
+                    <a href="/admin/users">View All Users</a>
+                    <a href="/signup">Create New User</a>
+                </div>
+                
+                <h3>Recent Users</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 25%">Name</th>
+                                <th style="width: 25%">Email</th>
+                                <th style="width: 25%">Roles</th>
+                                <th style="width: 20%">Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (recentUsers && recentUsers.length > 0) { %>
+                                <% recentUsers.forEach((user, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><%= user.name %></td>
+                                        <td><%= user.email %></td>
+                                        <td>
+                                            <% if (user.roles && user.roles.length > 0) { %>
+                                                <% user.roles.forEach((role, i) => { %>
+                                                    <span><%= role.name %></span>
+                                                    <%= i < user.roles.length - 1 ? ', ' : '' %>
+                                                <% }); %>
+                                            <% } else { %>
+                                                <span>No roles</span>
+                                            <% } %>
+                                        </td>
+                                        <td><%= new Date(user.created_at).toLocaleDateString() %></td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="5">No users found</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="admin-actions">
+                    <h3>Administrative Actions</h3>
+                    <div class="nav-links">
+                        <a href="/admin/users">Manage User Roles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
