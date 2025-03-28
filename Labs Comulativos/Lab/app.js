@@ -4,9 +4,35 @@ const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
+const multer = require('multer');
 const app = express();
 
+// Multer configuration for file uploads
+const fileStorage = multer.diskStorage({
+    destination: (request, file, callback) => {
+        // 'uploads': Directory where files will be stored
+        callback(null, 'uploads');
+    },
+    filename: (request, file, callback) => {
+        // Configure filename to avoid conflicts by adding timestamp
+        callback(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
+    },
+});
+
+// Filter to limit file types
+const fileFilter = (request, file, callback) => {
+    if (file.mimetype == 'image/png' || 
+        file.mimetype == 'image/jpg' ||
+        file.mimetype == 'image/jpeg') {
+            callback(null, true);
+    } else {
+            callback(null, false);
+    }
+};
+
 app.use(express.static(path.join(__dirname, 'public')));
+// Serve files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Set up EJS as view engine
 app.set('view engine', 'ejs');
@@ -18,6 +44,9 @@ app.use(cookieParser());
 // Body parser middleware - moving this BEFORE CSRF protection
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Multer middleware for file uploads
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('archivo'));
 
 // Session middleware
 app.use(session({
@@ -51,6 +80,8 @@ app.use((request, response, next) => {
 const studentRoutes = require('./routes/students.routes');
 const courseRoutes = require('./routes/courses.routes');
 const authRoutes = require('./routes/auth.routes');
+const uploadsRoutes = require('./routes/uploads.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 // Theme preference cookie middleware
 app.use((req, res, next) => {
@@ -64,6 +95,8 @@ app.use((req, res, next) => {
 app.use('/', authRoutes);
 app.use('/', studentRoutes);
 app.use('/', courseRoutes);
+app.use('/', uploadsRoutes);
+app.use('/', adminRoutes);
 
 // 404 handler - must be after all other routes
 app.use((request, response, next) => {

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Profile Picture</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 10px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .profile-image {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/admin/users" class="back-link">← Back to User Management</a>
+        
+        <h1>Upload Profile Picture</h1>
+        <h3>For <%= userType %>: <%= userName %></h3>
+
+        <% if (typeof errorMessage !== 'undefined') { %>
+            <div class="error"><%= errorMessage %></div>
+        <% } %>
+
+        <% if (currentPicture) { %>
+            <div class="image-container">
+                <h4>Current Profile Picture:</h4>
+                <img src="/<%= currentPicture %>" alt="Current profile picture" class="profile-image">
+            </div>
+        <% } %>
+
+        <form action="/admin/user/<%= userId %>/profile-picture" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="archivo">Select Profile Picture</label>
+                <input type="file" id="archivo" name="archivo">
+                <div><small>Supported formats: JPG, JPEG, PNG</small></div>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit">Upload</button>
+            <a href="/admin/users" class="btn-secondary" style="text-decoration: none; color: white;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

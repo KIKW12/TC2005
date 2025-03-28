@@ -1,0 +1,23 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navigation.ejs') %>
+
+<main>
+    <div class="container mt-4">
+        <div class="alert alert-success">
+            <h1>File Uploaded Successfully!</h1>
+            <p>Your file has been uploaded to the server.</p>
+        </div>
+
+        <div class="mt-4">
+            <h3>Uploaded Image:</h3>
+            <img src="/<%= filePath %>" alt="Uploaded image" class="img-fluid mt-2" style="max-width: 500px;">
+            <p class="mt-2">File path: <%= filePath %></p>
+        </div>
+
+        <div class="mt-4">
+            <a href="/upload" class="btn btn-primary">Upload Another File</a>
+        </div>
+    </div>
+</main>
+
+<%- include('includes/end.ejs') %>

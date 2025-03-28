@@ -4,33 +4,62 @@
     <title>Student List</title>
     <style>
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { padding: 10px; text-align: left; }
+        th, td { padding: 10px; text-align: left; vertical-align: middle; }
         th { background: #f4f4f4; }
         .actions { display: flex; gap: 10px; }
         .btn { padding: 5px 10px; border-radius: 4px; cursor: pointer; }
         .edit { background: #4CAF50; color: white; text-decoration: none; }
         .delete { background: #f44336; color: white; text-decoration: none; }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .profile-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: bold;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
     <h1>Student List</h1>
     <table border="1">
         <tr>
+            <th>Foto</th>
             <th>ID</th>
             <th>Nombre</th>
             <th>Grado</th>
             <th>ID estudiante</th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
         <% students.forEach(function(student) { %>
             <tr>
+                <td>
+                    <% if (student.profile_picture) { %>
+                        <img src="/<%= student.profile_picture %>" alt="<%= student.name %>'s profile" class="profile-img">
+                    <% } else { %>
+                        <div class="profile-placeholder">
+                            <%= student.name.charAt(0).toUpperCase() %>
+                        </div>
+                    <% } %>
+                </td>
                 <td><%= student.id %></td>
                 <td><%= student.name %></td>
                 <td><%= student.grade %></td>
                 <td><%= student.studentId %></td>
                 <td class="actions">
                     <a href="/students/edit/<%= student.id %>" class="btn edit">Editar</a>
-                    <a href="/students/delete/<%= student.id %>" class="btn delete" >Borrar</a>
+                    <a href="/students/delete/<%= student.id %>" class="btn delete">Borrar</a>
                 </td>
             </tr>
         <% }); %>

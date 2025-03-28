@@ -103,6 +103,24 @@
             color: #007bff;
             text-decoration: none;
         }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .profile-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="<%= theme || 'light' %>">
@@ -123,6 +141,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Profile</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Roles</th>
@@ -134,6 +153,15 @@
                             <% users.forEach((user, index) => { %>
                                 <tr>
                                     <td><%= index + 1 %></td>
+                                    <td>
+                                        <% if (user.profile_picture) { %>
+                                            <img src="/<%= user.profile_picture %>" alt="<%= user.name %>'s profile" class="profile-img">
+                                        <% } else { %>
+                                            <div class="profile-placeholder">
+                                                <%= user.name.charAt(0).toUpperCase() %>
+                                            </div>
+                                        <% } %>
+                                    </td>
                                     <td><%= user.name %></td>
                                     <td><%= user.email %></td>
                                     <td>
@@ -149,6 +177,7 @@
                                     <td><%= new Date(user.created_at).toLocaleDateString() %></td>
                                     <td>
                                         <a href="/admin/users/<%= user.id %>/roles" class="btn btn-sm btn-primary">Edit Roles</a>
+                                        <a href="/admin/user/<%= user.id %>/profile-picture" class="btn btn-sm btn-secondary">Profile Picture</a>
                                     </td>
                                 </tr>
                             <% }); %>

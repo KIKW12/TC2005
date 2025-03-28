@@ -1,0 +1,26 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navigation.ejs') %>
+
+<main>
+    <div class="container mt-4">
+        <h1>Upload File</h1>
+
+        <% if (typeof errorMessage !== 'undefined') { %>
+            <div class="alert alert-danger">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="archivo" class="form-label">Select an Image File</label>
+                <input type="file" class="form-control" id="archivo" name="archivo">
+                <div class="form-text">Supported formats: JPG, JPEG, PNG</div>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+</main>
+
+<%- include('includes/end.ejs') %>

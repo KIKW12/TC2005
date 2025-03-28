@@ -29,14 +29,25 @@ class Student {
         return db.execute('DELETE FROM students WHERE id = ?', [id]);
     }
 
-    // Fetch all students from the database
+    // Fetch all students from the database with profile pictures
     static fetchAll() {
-        return db.execute('SELECT * FROM students');
+        return db.execute(
+            'SELECT s.*, u.profile_picture ' +
+            'FROM students s ' +
+            'LEFT JOIN users u ON s.name = u.name ' +
+            'ORDER BY s.id'
+        );
     }
 
-    // Find a student by ID
+    // Find a student by ID with profile picture
     static findById(id) {
-        return db.execute('SELECT * FROM students WHERE id = ?', [id]);
+        return db.execute(
+            'SELECT s.*, u.profile_picture ' +
+            'FROM students s ' +
+            'LEFT JOIN users u ON s.name = u.name ' +
+            'WHERE s.id = ?',
+            [id]
+        );
     }
 }
 

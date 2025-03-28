@@ -3,11 +3,12 @@ const bcrypt = require('bcryptjs');
 const Role = require('./role.model');
 
 class User {
-    constructor(id, name, email, password) {
+    constructor(id, name, email, password, profilePicture = null) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.profilePicture = profilePicture;
     }
 
     // Save a new user to the database with password hashing
@@ -16,8 +17,8 @@ class User {
         return bcrypt.hash(this.password, 12)
             .then(hashedPassword => {
                 return db.execute(
-                    'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-                    [this.name, this.email, hashedPassword]
+                    'INSERT INTO users (name, email, password, profile_picture) VALUES (?, ?, ?, ?)',
+                    [this.name, this.email, hashedPassword, this.profilePicture]
                 );
             });
     }
@@ -49,6 +50,17 @@ class User {
             });
     }
 
+    // Find a user by name
+    static findByName(name) {
+        return db.execute('SELECT * FROM users WHERE name = ?', [name])
+            .then(([rows]) => {
+                if (rows.length === 0) {
+                    return null;
+                }
+                return rows[0];
+            });
+    }
+
     // Find a user by ID
     static findById(id) {
         return db.execute('SELECT * FROM users WHERE id = ?', [id])
@@ -60,9 +72,17 @@ class User {
             });
     }
 
+    // Update user profile picture
+    static updateProfilePicture(userId, profilePicturePath) {
+        return db.execute(
+            'UPDATE users SET profile_picture = ? WHERE id = ?',
+            [profilePicturePath, userId]
+        );
+    }
+
     // Get all users
     static fetchAll() {
-        return db.execute('SELECT id, name, email, created_at FROM users')
+        return db.execute('SELECT id, name, email, profile_picture, created_at FROM users')
             .then(([rows]) => {
                 return rows;
             });

@@ -2,10 +2,29 @@
 <html>
 <head>
     <title>Nuevo estudiante</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 500px; margin-bottom: 20px; }
+        div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        a { display: inline-block; margin-top: 10px; }
+        .preview-container {
+            margin-top: 10px;
+            display: none;
+        }
+        #image-preview {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <h1>Agrega nuevo estudiante</h1>
-    <form action="/students/add" method="POST">
+    <form action="/students/add" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div>
             <label for="name">Nombre:</label>
@@ -19,8 +38,38 @@
             <label for="studentId">ID Estudiante:</label>
             <input type="text" id="studentId" name="studentId" required>
         </div>
+        <div>
+            <label for="archivo">Foto de perfil:</label>
+            <input type="file" id="archivo" name="archivo" accept="image/png, image/jpeg, image/jpg" onchange="previewImage()">
+            <div class="preview-container" id="preview-container">
+                <p>Vista previa:</p>
+                <img id="image-preview" src="#" alt="Vista previa de imagen">
+            </div>
+        </div>
         <button type="submit">Agregar estudiante</button>
     </form>
     <a href="/students">Ver estudiantes</a>
+
+    <script>
+        function previewImage() {
+            const preview = document.getElementById('image-preview');
+            const file = document.getElementById('archivo').files[0];
+            const previewContainer = document.getElementById('preview-container');
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                previewContainer.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
