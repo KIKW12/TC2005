@@ -1,5 +1,3 @@
-## Puntos clave desarrollados en el artículo
-
 ### Ventajas de la detección temprana de errores
 Comenzar las pruebas lo antes posible ayuda a identificar y corregir defectos de manera oportuna, reduciendo los costos asociados con las correcciones tardías.
 
